@@ -48,12 +48,40 @@ class GetNoteTest {
     }
 
     @Test
-    fun getNotesOrderedAsc() = runBlocking {
+    fun getNotesOrderedByTitleAsc() = runBlocking {
         // When
         val notes = getNotesMockk(NoteOrder.Title(OrderType.Ascending)).first()
         // Then
-        for(i in 0..notes.size - 2) {
-            assert(notes[i].title < notes[i+1].title)
+        for (i in 0..notes.size - 2) {
+            assert(notes[i].title < notes[i + 1].title)
+        }
+    }
+
+    @Test
+    fun getNotesOrderedByTitleDesc() = runBlocking {
+        // When
+        val notes = getNotesMockk(NoteOrder.Title(OrderType.Descending)).first()
+        // Then
+        for (i in 0..notes.size - 2) {
+            assert(notes[i].title > notes[i + 1].title)
+        }
+    }
+    @Test
+    fun getNotesOrderedByColorDesc() = runBlocking {
+        // When
+        val notes = getNotesMockk(NoteOrder.Color(OrderType.Descending)).first()
+        // Then
+        for (i in 0..notes.size - 2) {
+            assert(notes[i].color > notes[i + 1].color)
+        }
+    }
+    @Test
+    fun getNotesOrderedByColorAsc() = runBlocking {
+        // When
+        val notes = getNotesMockk(NoteOrder.Color(OrderType.Ascending)).first()
+        // Then
+        for (i in 0..notes.size - 2) {
+            assert(notes[i].color < notes[i + 1].color)
         }
     }
 }
