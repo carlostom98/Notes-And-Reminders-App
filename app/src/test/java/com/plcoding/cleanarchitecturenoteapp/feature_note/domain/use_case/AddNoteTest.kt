@@ -8,6 +8,7 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import io.mockk.unmockkAll
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.*
@@ -35,7 +36,7 @@ class AddNoteTest {
 
     @After
     fun tearDown() {
-
+        unmockkAll()
     }
 
     @Test(expected = InvalidNoteException::class)

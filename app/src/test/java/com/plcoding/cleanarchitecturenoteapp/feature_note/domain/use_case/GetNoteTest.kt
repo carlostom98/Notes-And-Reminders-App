@@ -6,6 +6,7 @@ import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.util.NoteOrder
 import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.util.OrderType
 import io.mockk.MockKAnnotations
 import io.mockk.coVerify
+import io.mockk.mockk
 import io.mockk.unmockkAll
 import io.mockk.verify
 import kotlinx.coroutines.delay
@@ -23,7 +24,7 @@ class GetNoteTest {
     @Before
     fun setUp() {
         MockKAnnotations.init()
-        fakeRepository = MockkRepository()
+        fakeRepository = mockk<MockkRepository>()
         getNotesMockk = GetNotes(fakeRepository)
 
         val notesToInsert =
@@ -62,6 +63,7 @@ class GetNoteTest {
         for (i in 0..notes.size - 2) {
             assert(notes[i].title < notes[i + 1].title)
         }
+        coVerify(exactly = 1) { fakeRepository.getNotes() }
     }
 
     @Test
