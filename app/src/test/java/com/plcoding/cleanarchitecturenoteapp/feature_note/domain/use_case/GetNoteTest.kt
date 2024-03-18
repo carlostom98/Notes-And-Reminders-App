@@ -4,7 +4,13 @@ import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.repository.Mock
 import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.repository.NoteRepository
 import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.util.NoteOrder
 import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.util.OrderType
+import io.mockk.MockKAnnotations
+import io.mockk.coVerify
+import io.mockk.unmockkAll
+import io.mockk.verify
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -16,6 +22,7 @@ class GetNoteTest {
 
     @Before
     fun setUp() {
+        MockKAnnotations.init()
         fakeRepository = MockkRepository()
         getNotesMockk = GetNotes(fakeRepository)
 
@@ -44,7 +51,7 @@ class GetNoteTest {
 
     @After
     fun tearDown() {
-
+        unmockkAll()
     }
 
     @Test
