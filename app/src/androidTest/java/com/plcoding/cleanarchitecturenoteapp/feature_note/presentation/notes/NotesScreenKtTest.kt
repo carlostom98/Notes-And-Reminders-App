@@ -1,11 +1,16 @@
 package com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.test.core.app.ApplicationProvider
+import com.plcoding.cleanarchitecturenoteapp.constants.ConstantsUtils
 import com.plcoding.cleanarchitecturenoteapp.di.AppModule
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.MainActivity
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.util.Screen
@@ -14,9 +19,9 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 
 @HiltAndroidTest
 @UninstallModules(AppModule::class)
@@ -35,7 +40,10 @@ class NotesScreenKtTest {
         composeRule.setContent {
             val navController = rememberNavController()
             CleanArchitectureNoteAppTheme {
-                NavHost(navController = navController, startDestination = Screen.NotesScreen.route) {
+                NavHost(
+                    navController = navController,
+                    startDestination = Screen.NotesScreen.route
+                ) {
                     composable(route = Screen.NotesScreen.route) {
                         NotesScreen(navController = navController)
                     }
@@ -46,6 +54,17 @@ class NotesScreenKtTest {
 
     @After
     fun tearDown() {
+
+    }
+
+    @Test
+    fun clickToggleOrderSectionIsVisible() {
+        val context = ApplicationProvider.getApplicationContext<android.content.Context>()
+
+        composeRule.onNodeWithTag(ConstantsUtils.ORDER_SECTION_TAG).assertDoesNotExist()
+        composeRule.onNodeWithContentDescription("Sort").performClick()
+        composeRule.onNodeWithTag(ConstantsUtils.ORDER_SECTION_TAG).assertIsDisplayed()
+
 
     }
 }
