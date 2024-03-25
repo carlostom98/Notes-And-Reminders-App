@@ -1,5 +1,6 @@
 package com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes
 
+import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -37,7 +38,7 @@ class NotesScreenKtTest {
     @Before
     fun setUp() {
         hiltRule.inject()
-        composeRule.setContent {
+        composeRule.activity.setContent {
             val navController = rememberNavController()
             CleanArchitectureNoteAppTheme {
                 NavHost(
@@ -60,7 +61,6 @@ class NotesScreenKtTest {
     @Test
     fun clickToggleOrderSectionIsVisible() {
         val context = ApplicationProvider.getApplicationContext<android.content.Context>()
-
         composeRule.onNodeWithTag(ConstantsUtils.ORDER_SECTION_TAG).assertDoesNotExist()
         composeRule.onNodeWithContentDescription("Sort").performClick()
         composeRule.onNodeWithTag(ConstantsUtils.ORDER_SECTION_TAG).assertIsDisplayed()
