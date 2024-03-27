@@ -64,7 +64,5 @@ class NotesScreenKtTest {
         composeRule.onNodeWithTag(ConstantsUtils.ORDER_SECTION_TAG).assertDoesNotExist()
         composeRule.onNodeWithContentDescription("Sort").performClick()
         composeRule.onNodeWithTag(ConstantsUtils.ORDER_SECTION_TAG).assertIsDisplayed()
-
-
     }
 }

@@ -11,6 +11,9 @@
       <entry key="clickToggleOrderSectionIsVisible()">
         <State />
       </entry>
+      <entry key="saveNewNote_EditAfterwards()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
