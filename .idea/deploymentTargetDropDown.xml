@@ -14,6 +14,9 @@
       <entry key="saveNewNote_EditAfterwards()">
         <State />
       </entry>
+      <entry key="saveThreeNotes_RetrieveInDescendingOrder()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

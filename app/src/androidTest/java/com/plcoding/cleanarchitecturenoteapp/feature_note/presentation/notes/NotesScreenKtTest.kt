@@ -11,7 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
-import com.plcoding.cleanarchitecturenoteapp.constants.ConstantsUtils
+import com.plcoding.cleanarchitecturenoteapp.constants.TestTags
 import com.plcoding.cleanarchitecturenoteapp.di.AppModule
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.MainActivity
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.util.Screen
@@ -61,8 +61,8 @@ class NotesScreenKtTest {
     @Test
     fun clickToggleOrderSectionIsVisible() {
         val context = ApplicationProvider.getApplicationContext<android.content.Context>()
-        composeRule.onNodeWithTag(ConstantsUtils.ORDER_SECTION_TAG).assertDoesNotExist()
+        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_TAG).assertDoesNotExist()
         composeRule.onNodeWithContentDescription("Sort").performClick()
-        composeRule.onNodeWithTag(ConstantsUtils.ORDER_SECTION_TAG).assertIsDisplayed()
+        composeRule.onNodeWithTag(TestTags.ORDER_SECTION_TAG).assertIsDisplayed()
     }
 }
